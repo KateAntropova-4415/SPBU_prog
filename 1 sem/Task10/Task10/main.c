@@ -121,10 +121,10 @@ void third(char* s) {
         k[i] = 0;
     }
 
-    int N = 0;
-    for (int i = 0; i <= strlen(s); i++)
+    int N = 0, i;
+    for (i = 0; i < strlen(s); i++)
     {
-        if (s[i] != ' ')
+        if (s[i] != ' ' && s[i]!='\0')
         {
             k[N]++;
         }
@@ -137,23 +137,33 @@ void third(char* s) {
             }
             else k[N] = 0;
         }
-
     }
+    if (k[N] % 2 != 0 && k[N] > 1)
+    {
+        k[N] = i - (k[N] / 2) - 1;
+        N++;
+    }
+    else k[N] = 0;
 
     int j = 0, t = 0;
-    for (int i = 0; i < strlen(s); i++)
+    for (i = 0; i <= strlen(s); i++)
     {
-        if (i != k[j] && k[j]!=0)
+        if (i == 0 && k[N] == 0)
         {
             s1[t] = s[i];
             t++;
         }
-        else if (i == k[j] && k[j]!=0)
+        else if (i != k[j])
+        {
+            s1[t] = s[i];
+            t++;
+        }
+        else if (i == k[j] && k[j]>0)
         {
             if (j < N)
-                j++;
+            j++;
         }
     }
-
     strcpy(s, s1);
+    s[strlen(s1)] = '\0';
 }

@@ -8,7 +8,7 @@ void B(char* s);
 void second(char* s);
 void third(char* s);
 
-int main(int args, char* argv[])
+int main(int argc, char* argv[])
 {
     char* input;
     char* output;
@@ -20,10 +20,10 @@ int main(int args, char* argv[])
     printf("Please enter output file name:\n");
     gets(output);
 
-    if (args >= 2) {
+    if (argc >= 2) {
         input = argv[1];
     }
-    if (args == 3) {
+    if (argc == 3) {
         output = argv[2];
     }
 
@@ -95,18 +95,19 @@ void B(char* s) {
 }
 
 void second(char* s) {
-    char s1[100] = "";
+    char s1[256] = "";
+    char* str = s;
     char* last = strrchr(s, ' ') + 1;
-    char* curr = s;
     char* next = strchr(s, ' ');
+
     while (next != NULL) {
         *next = '\0';
-        if (strcmp(curr, last)) {
-            strcat(s1, curr);
+        if (strcmp(str, last)) {
+            strcat(s1, str);
             strcat(s1, " ");
         }
-        curr = next + 1;
-        next = strchr(curr, ' ');
+        str = next + 1;
+        next = strchr(str, ' ');
     }
 
     strcpy(s, s1);

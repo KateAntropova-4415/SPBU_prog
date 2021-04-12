@@ -97,17 +97,17 @@ void B(char* s) {
 void second(char* s) {
     char s1[256] = "";
     char* str = s;
-    char* last = strrchr(s, ' ') + 1;
-    char* next = strchr(s, ' ');
+    char* laststr = strrchr(s, ' ') + 1;
+    char* nextstr = strchr(s, ' ');
 
-    while (next != NULL) {
-        *next = '\0';
-        if (strcmp(str, last)) {
+    while (nextstr != NULL) {
+        *nextstr = '\0';
+        if (strcmp(str, laststr)) {
             strcat(s1, str);
             strcat(s1, " ");
         }
-        str = next + 1;
-        next = strchr(str, ' ');
+        str = nextstr + 1;
+        nextstr = strchr(str, ' ');
     }
 
     strcpy(s, s1);
